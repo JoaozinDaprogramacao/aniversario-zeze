@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         // Envia os dados para o servidor
-        fetch('http://localhost:3000/save', {
+        fetch('http://191.252.191.180:3000/save', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
