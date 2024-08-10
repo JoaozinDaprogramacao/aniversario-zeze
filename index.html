@@ -13,9 +13,25 @@
 </head>
 
 <body>
-    <!-- Reprodutor de Áudio -->
-    <!--<audio id="background-music" src="sua-musica.mp3" loop></audio> -->
-    <section class="sec-principal">
+    <div class="musica" id="musica">
+        <div class="modal-body text-center">
+            <p>
+                <span>
+                    Bem-vindo(a) ao convite de
+                </span>
+
+            <h1>Zezé</h1>
+            </p>
+
+            <div class="botoes">
+                <span>A música de fundo faz parte da experiência</span>
+
+                <br>
+                <a class="boton" id="play-music-modal" href="">Entrar com música</a>
+            </div>
+        </div>
+    </div>
+    <section class="sec-principal oculta" id="sec-principal">
         <section class="header">
             <div class="arco">
                 <img class="flor f1" src="Assets/imgs/flor.png" alt="">
@@ -30,7 +46,7 @@
             <section class="principal" id="principal">
                 <div class="titulo">
                     <span class="flecha">
-                        01/02/2024
+                        31/08/2024
                     </span>
                     <h1>Zezé</h1>
                 </div>
@@ -51,7 +67,9 @@
                 <div class="sessaoAnimacao">
                     <img class="beijaFlor" src="Assets/imgs/beijarFlor.png" alt="Beija Flor">
                 </div>
-                <h2 class="confirmacao-titulo">Confirmação</h2>
+                <div class="nuvem">
+                    <h2 class="confirmacao-titulo">Confirmação</h2>
+                </div>
                 <ul class="opcoes">
                     <li class="opcao">
                         <h4>Presença</h4>
@@ -61,7 +79,7 @@
                     <li class="opcao">
                         <h4>Endereço</h4>
                         <p>Av. Presidente Getúlio Vargas, 514A Ceramica</p>
-                        <button>COMO CHEGAR?</button>
+                        <button id="mapButton">COMO CHEGAR?</button>
                     </li>
                 </ul>
             </section>
@@ -113,7 +131,20 @@
                     </div>
                 </div>
             </div>
-
+            <div id="modal-map" class="modal">
+                <div class="modal-icon">
+                    <img class="flor" src="Assets/imgs/flor.png" alt="">
+                </div>
+                <div class="modal-content">
+                    <span id="closeButton-map" class="close">×</span>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Como chegar?</h5>
+                    </div>
+                    <div class="modal-body">
+                        
+                    </div>
+                </div>
+            </div>
         </main>
     </section>
 </body>

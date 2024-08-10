@@ -1,9 +1,29 @@
 document.addEventListener('DOMContentLoaded', function () {
     const confirmButton = document.getElementById('confirmButton');
+    const mapButton = document.getElementById("mapButton")
+
     const modal = document.getElementById('modal');
     const closeButton = document.getElementById('closeButton');
+
+    
+    const modalMap = document.getElementById('modal-map');
+    const closeButtonMap = document.getElementById('closeButton-map');
+
     const content = document.getElementById('principal');
     let currentId = 1; // Inicializar o ID
+    const btnConfirmar = document.getElementById("play-music-modal");
+    const sessaoPrincipal = document.getElementById("sec-principal");
+    const divMusica = document.getElementById("musica");
+
+    btnConfirmar.addEventListener('click', function () {
+        event.preventDefault(); // Evita a atualização da página
+        divMusica.classList.add('oculta'); // Esconde a divMusica
+
+        sessaoPrincipal.classList.remove("oculta");
+        sessaoPrincipal.classList.add('mostra');
+        var audio = new Audio('Assets/musica/musica.mp3');
+        audio.play();
+    });
 
     confirmButton.addEventListener('click', function () {
         modal.style.display = 'block';
@@ -18,6 +38,25 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('click', function (event) {
         if (event.target == modal) {
             modal.style.display = 'none';
+            content.classList.remove('blur');
+        }
+    });
+
+    //map
+
+    mapButton.addEventListener('click', function () {
+        modalMap.style.display = 'block';
+        content.classList.add('blur');
+    });
+
+    closeButton.addEventListener('click', function () {
+        modalMap.style.display = 'none';
+        content.classList.remove('blur');
+    });
+
+    window.addEventListener('click', function (event) {
+        if (event.target == modalMap) {
+            modalMap.style.display = 'none';
             content.classList.remove('blur');
         }
     });
@@ -43,8 +82,8 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             body: JSON.stringify(data),
         })
-        .then(response => response.text())
-        .then(message => console.log(message))
-        .catch(error => console.error('Erro:', error));
+            .then(response => response.text())
+            .then(message => console.log(message))
+            .catch(error => console.error('Erro:', error));
     });
 });
