@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
     const confirmButton = document.getElementById('confirmButton');
-    const mapButton = document.getElementById("mapButton")
+    const mapButton = document.getElementById("mapButton");
 
     const modal = document.getElementById('modal');
     const closeButton = document.getElementById('closeButton');
 
-    
     const modalMap = document.getElementById('modal-map');
     const closeButtonMap = document.getElementById('closeButton-map');
 
@@ -15,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const sessaoPrincipal = document.getElementById("sec-principal");
     const divMusica = document.getElementById("musica");
 
-    btnConfirmar.addEventListener('click', function () {
+    btnConfirmar.addEventListener('click', function (event) {
         event.preventDefault(); // Evita a atualização da página
         divMusica.classList.add('oculta'); // Esconde a divMusica
 
@@ -42,14 +41,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    //map
+    // Map
 
     mapButton.addEventListener('click', function () {
         modalMap.style.display = 'block';
         content.classList.add('blur');
     });
 
-    closeButton.addEventListener('click', function () {
+    closeButtonMap.addEventListener('click', function () {  // Corrigido para closeButtonMap
         modalMap.style.display = 'none';
         content.classList.remove('blur');
     });
@@ -62,7 +61,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Tratamento e envio dos dados
-    document.getElementById('sendAsistencia').addEventListener('click', function () {
+    document.getElementById('sendAsistencia').addEventListener('click', function (event) {
+        event.preventDefault(); // Previne o recarregamento da página
+
         const confirma = document.querySelector('input[name="asistencia"]:checked').value;
         const nome = document.getElementById('nombreAsistente').value;
         const comentarios = document.getElementById('comentariosAsistente').value;
@@ -75,15 +76,30 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         // Envia os dados para o servidor
-        fetch('http://191.252.191.180:3000/save', {
+        fetch('http://localhost:3000/save', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
         })
-            .then(response => response.text())
-            .then(message => console.log(message))
-            .catch(error => console.error('Erro:', error));
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na rede');
+            }
+            return response.text();
+        })
+        .then(message => {
+            console.log(message);
+            alert('Informações enviadas com sucesso!');
+            // Limpa o formulário após o envio bem-sucedido
+            document.getElementById('nombreAsistente').value = '';
+            document.getElementById('comentariosAsistente').value = '';
+            document.querySelector('input[name="asistencia"]:checked').checked = false;
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Houve um problema ao enviar as informações.');
+        });
     });
 });
