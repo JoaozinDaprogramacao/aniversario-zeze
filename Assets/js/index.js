@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         // Envia os dados para o servidor
-        fetch('http://localhost:3000/save', {
+        fetch('http://191.252.191.180:3000/save', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(message => {
             console.log(message);
-            alert('Informações enviadas com sucesso!');
+            window.alert('Informações enviadas com sucesso!');
             // Limpa o formulário após o envio bem-sucedido
             document.getElementById('nombreAsistente').value = '';
             document.getElementById('comentariosAsistente').value = '';
@@ -102,4 +102,12 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Houve um problema ao enviar as informações.');
         });
     });
+    function showSuccessMessage() {
+        successMessage.classList.remove('hidden');
+        successMessage.classList.add('visible');
+        setTimeout(() => {
+            successMessage.classList.remove('visible');
+            setTimeout(() => successMessage.classList.add('hidden'), 500);
+        }, 3000); // Mostra a mensagem por 3 segundos
+    }
 });

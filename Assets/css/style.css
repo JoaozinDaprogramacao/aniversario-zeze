@@ -368,9 +368,12 @@ body {
 
 .nuvem {
     background-image: url("../imgs/nuvem.png");
-    background-size: 140%; /* Redimensiona a imagem para 5 vezes o tamanho original */
-    background-repeat: no-repeat; /* Evita que a imagem se repita */
-    background-position: center; /* Centraliza a imagem */
+    background-size: 140%;
+    /* Redimensiona a imagem para 5 vezes o tamanho original */
+    background-repeat: no-repeat;
+    /* Evita que a imagem se repita */
+    background-position: center;
+    /* Centraliza a imagem */
     width: 290px;
     height: 120px;
     display: flex;
@@ -583,4 +586,27 @@ form {
     background-color: #fc6bac !important;
     border: 1px solid #fc6bac !important;
     font-weight: 700 !important;
+}
+
+.success-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    background-color: #4CAF50;
+    /* Verde */
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 1000;
+}
+
+.success-message.visible {
+    opacity: 1;
+}
+
+.hidden {
+    display: none;
 }
